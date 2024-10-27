@@ -1,7 +1,7 @@
 "use client";
 
 import Posts from "./Posts";
-import Story from "./story";
+import Story from "./Story";
 import RecentlyViewed from "./RecentlyViewed";
 const Homepage = () => {
   return (

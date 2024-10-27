@@ -2,9 +2,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Sidebar from "./components/Sidebar";
-import Story from "./components/story";
-import Posts from "./components/Posts";
-import Homepage from "./components/Homepage";
 import { RecentProfilesProvider } from "../app/context/RecentProfilesContext";
 
 
