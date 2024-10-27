@@ -27,19 +27,13 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}>
         <RecentProfilesProvider>
             <div className="flex h-screen">
-            {/* Sidebar with fixed height and width */}
             <div className="h-full fixed  top-0"> 
               <Sidebar />
             </div>
 
-            {/* Main content area */}
             <main className="flex-grow overflow-y-auto overflow-x-hidden h-full "> {/* Main content with scroll */}
                 {children}
               </main>
-            
-                
-              
-            
           </div>
         </RecentProfilesProvider>
         

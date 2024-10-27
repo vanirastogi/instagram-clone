@@ -6,11 +6,8 @@ const Sidebar = () => {
   return (
     <div className=" h-screen bg-gray-800 w-20 md:w-40 lg:w-60 border-r p-6 border-gray-500 text-white flex flex-col ">
       
-      {/* Logo or Camera Icon */}
       <div className="text-2xl font-bold text-white mb-10">
-        {/* Camera icon for small screens */}
         <FontAwesomeIcon icon={faCamera} className="block md:hidden lg:hidden w-6 h-6 mx-auto" />
-        {/* Instagram text for larger screens */}
         <span className="hidden md:block lg:block">Instagram</span>
       </div>
 

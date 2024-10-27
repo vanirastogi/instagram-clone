@@ -4,16 +4,15 @@ import Post from './Post';
 import Link from 'next/link';
 
 function Posts() {
-  const [allPosts, setAllPosts] = useState([]); // Store all posts
-  const [displayedPosts, setDisplayedPosts] = useState([]); // Posts to display
+  const [allPosts, setAllPosts] = useState([]); 
+  const [displayedPosts, setDisplayedPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false); // State for loading more posts
+  const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState(null);
   const [usersArray, setUsersArray] = useState([]);
   const loader = useRef(null);
-  const postsToShow = 5; // Number of posts to show at a time
+  const postsToShow = 5; 
 
-  // Function to fetch posts
   const fetchPosts = async () => {
     try {
       const response = await fetch("https://ig-clone-c6ba4-default-rtdb.firebaseio.com/users.json");
@@ -42,8 +41,8 @@ function Posts() {
       // console.log("All posts:", posts); // Log the flattened posts
 
       if (posts.length > 0) {
-        setAllPosts(posts); // Set all posts
-        setDisplayedPosts(posts.slice(0, postsToShow)); // Display the first batch
+        setAllPosts(posts); s
+        setDisplayedPosts(posts.slice(0, postsToShow)); 
       } else {
         setError("No posts found.");
       }
@@ -55,21 +54,20 @@ function Posts() {
     }
   };
 
-  // Load initial posts on mount
   useEffect(() => {
     fetchPosts();
   }, []);
 
   // Function to load more posts
   const loadMorePosts = () => {
-    setLoadingMore(true); // Set loading state for loading more posts
+    setLoadingMore(true); 
 
     // Simulate network delay
     setTimeout(() => {
       const nextPosts = allPosts.slice(displayedPosts.length, displayedPosts.length + postsToShow);
       setDisplayedPosts(prev => [...prev, ...nextPosts]);
-      setLoadingMore(false); // Reset loading state after delay
-    }, 1000); // Adjust delay as needed (1000ms = 1 second)
+      setLoadingMore(false);
+    }, 1000); 
   };
 
   // Set up Intersection Observer
@@ -90,7 +88,7 @@ function Posts() {
         observer.unobserve(loader.current);
       }
     };
-  }, [loader, displayedPosts, allPosts, loadingMore]); // Dependencies
+  }, [loader, displayedPosts, allPosts, loadingMore]); 
 
   return (
     <div className='bg-gray-800 min-h-screen'>
@@ -119,7 +117,7 @@ function Posts() {
           </div>
         );
       })}
-      {/* Only show loadingMore indicator if there are displayed posts */}
+      
       {loadingMore && displayedPosts.length > 0 && <p className='text-white'>Loading more posts...</p>} 
       <div ref={loader} className='h-10'></div>
     </div>

@@ -21,7 +21,7 @@ export const RecentProfilesProvider = ({ children }) => {
   const addRecentProfile = (profile) => {
     setRecentProfiles((prev) => {
       const updatedProfiles = [profile, ...prev.filter((p) => p.id !== profile.id)];
-      return updatedProfiles.slice(0, 5); // Limit to 5 recent profiles
+      return updatedProfiles.slice(0, 5); 
     });
   };
 

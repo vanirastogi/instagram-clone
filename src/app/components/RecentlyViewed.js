@@ -11,7 +11,7 @@ const RecentlyViewed = () => {
                 <h1 className="">Click on a user to see profiles</h1>
             ) : (
                 recentProfiles.map((user) => (
-                    <div key={user.id} className="p-4 flex"> {/* Added key prop here */}
+                    <div key={user.id} className="p-4 flex"> 
                         <img
                             src={user?.profileImage}
                             alt={user?.fullName}

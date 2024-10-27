@@ -15,7 +15,7 @@ const Post = ({ post }) => {
         if (commentText.trim() === "") return;
 
         const newComment = {
-            username: "Current User", // Replace with actual username if available
+            username: "Current User", 
             text: commentText,
         };
         

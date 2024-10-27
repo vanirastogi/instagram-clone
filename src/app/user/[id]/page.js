@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 const UserProfile = ({ params }) => {
-  const { id } = params;  // The numeric id from the URL
+  const { id } = params;  
   const [usersArray, setUsersArray] = useState([]);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
@@ -21,15 +21,13 @@ const UserProfile = ({ params }) => {
         }
         const data = await response.json();
         
-        // Convert object with keys to array
         const usersArray = Object.values(data);
         setUsersArray(usersArray);
         console.log(usersArray);
 
-        // Find the user by id
         const foundUser = usersArray.find(user => user.id == id);
         if (!foundUser) {
-          notFound();  // If no user is found with the given id
+          notFound();  
         } else {
           setUser(foundUser);
           addRecentProfile(foundUser);
@@ -42,7 +40,7 @@ const UserProfile = ({ params }) => {
     };
 
     fetchUsers();
-  }, [id , addRecentProfile]); // Depend on the 'id'
+  }, [id , addRecentProfile]); 
 
   if (error) {
     return <div>Error: {error}</div>;
