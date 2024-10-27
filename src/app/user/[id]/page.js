@@ -1,5 +1,6 @@
 
 "use client"
+import { useRecentProfiles } from '@/app/context/RecentProfilesContext';
 import { notFound } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
@@ -8,6 +9,7 @@ const UserProfile = ({ params }) => {
   const [usersArray, setUsersArray] = useState([]);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+  const {addRecentProfile} = useRecentProfiles();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -30,6 +32,7 @@ const UserProfile = ({ params }) => {
           notFound();  // If no user is found with the given id
         } else {
           setUser(foundUser);
+          addRecentProfile(foundUser);
         }
 
       } catch (error) {
@@ -39,7 +42,7 @@ const UserProfile = ({ params }) => {
     };
 
     fetchUsers();
-  }, [id]); // Depend on the 'id'
+  }, [id , addRecentProfile]); // Depend on the 'id'
 
   if (error) {
     return <div>Error: {error}</div>;

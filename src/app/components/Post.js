@@ -1,20 +1,36 @@
-// src/app/components/Post.js
 import React, { useState } from "react";
 
 const Post = ({ post }) => {
-    const [likes, setLikes] = useState(post.likes || 0); // Default to 0 if likes is undefined
+    const [likes, setLikes] = useState(post.likes || 0);
     const [liked, setLiked] = useState(false);
-    const [comments, setComments] = useState(post.comments || []); // Default to empty array if comments is undefined
+    const [comments, setComments] = useState(post.comments || []);
+    const [commentText, setCommentText] = useState("");
 
     const handleLike = () => {
         setLiked((prevLiked) => !prevLiked);
         setLikes((prevLikes) => (liked ? prevLikes - 1 : prevLikes + 1));
     };
 
+    const handleCommentSubmit = () => {
+        if (commentText.trim() === "") return;
+
+        const newComment = {
+            username: "Current User", // Replace with actual username if available
+            text: commentText,
+        };
+        
+        setComments([...comments, newComment]);
+        setCommentText(""); 
+    };
+
+    const formattedTimestamp = new Date(post.timestamp).toLocaleString();
+
     return (
         <div className="bg-transparent p-4 text-white">
             <img src={post.image} alt={post.title} className="w-full h-auto" />
             <p>{post.body}</p>
+            
+
             <div className="flex space-x-4 mt-2">
                 <button onClick={handleLike} className="flex items-center">
                     <svg
@@ -38,16 +54,38 @@ const Post = ({ post }) => {
             <div className="mt-4">
                 <h3>Comments:</h3>
                 {comments.length === 0 ? (
-                    <p>No Comments yet. Be the first one to comment.</p>
+                    <p>No comments yet. Be the first one to comment.</p>
                 ) : (
                     <ul>
                         {comments.map((comment) => (
-                            <li key={comment.id} className="mb-2">
-                                <strong>{comment.username}</strong> {comment.text}
+                            <li key={comment.id} className="mb-2 flex ">
+                                <strong>{comment.username} </strong>
+                                <p> : {comment.text}</p>
                             </li>
                         ))}
                     </ul>
                 )}
+
+                {/* Comment Input */}
+                <div className="mt-4 flex items-center">
+                    <input
+                        type="text"
+                        value={commentText}
+                        onChange={(e) => setCommentText(e.target.value)}
+                        placeholder="Write a comment..."
+                        className="p-2 w-full bg-gray-800 text-white rounded"
+                    />
+                    <button onClick={handleCommentSubmit} className="ml-2">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            className="w-6 h-6 text-blue-500"
+                        >
+                            <path d="M12 2a10 10 0 110 20 10 10 0 010-20zM10 15.9l6-6-1.4-1.4L10 13.1l-2.6-2.6L6 12.9l4 4z" />
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     );

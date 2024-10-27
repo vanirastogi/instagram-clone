@@ -1,9 +1,12 @@
+
 import localFont from "next/font/local";
 import "./globals.css";
 import Sidebar from "./components/Sidebar";
 import Story from "./components/story";
 import Posts from "./components/Posts";
 import Homepage from "./components/Homepage";
+import { RecentProfilesProvider } from "../app/context/RecentProfilesContext";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,21 +28,24 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}>
-        <div className="flex h-screen">
-          {/* Sidebar with fixed height and width */}
-          <div className="h-full fixed  top-0"> 
-            <Sidebar />
-          </div>
+        <RecentProfilesProvider>
+            <div className="flex h-screen">
+            {/* Sidebar with fixed height and width */}
+            <div className="h-full fixed  top-0"> 
+              <Sidebar />
+            </div>
 
-          {/* Main content area */}
-          <main className="flex-grow overflow-y-auto overflow-x-hidden h-full "> {/* Main content with scroll */}
-              {children}
-            </main>
-          
+            {/* Main content area */}
+            <main className="flex-grow overflow-y-auto overflow-x-hidden h-full "> {/* Main content with scroll */}
+                {children}
+              </main>
+            
+                
               
             
-          
-        </div>
+          </div>
+        </RecentProfilesProvider>
+        
       </body>
     </html>
   );

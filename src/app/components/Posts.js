@@ -112,6 +112,7 @@ function Posts() {
                   {user?.fullName} 
                 </h2>
               </Link>
+              <p className="text-gray-400 px-2 py-3 text-sm">{post.timestamp}</p>
               
             </div>
             <Post post={post} />
