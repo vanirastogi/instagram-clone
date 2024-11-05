@@ -5,7 +5,7 @@ import Story from "./Story";
 import RecentlyViewed from "./RecentlyViewed";
 const Homepage = () => {
   return (
-    <div className="flex flex-col h-full ml-60 p-10 overflow-y-auto overflow-x-hidden"> 
+    <div className="flex flex-col h-full ml-20 md:ml-40  lg:ml-60 p-10 overflow-y-auto overflow-x-hidden"> 
       <div className="flex w-full  space-x-4  pr-8"> 
         <Story />
       </div>

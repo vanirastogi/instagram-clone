@@ -41,7 +41,7 @@ function Posts() {
       // console.log("All posts:", posts); // Log the flattened posts
 
       if (posts.length > 0) {
-        setAllPosts(posts); s
+        setAllPosts(posts);
         setDisplayedPosts(posts.slice(0, postsToShow)); 
       } else {
         setError("No posts found.");

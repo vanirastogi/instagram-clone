@@ -17,3 +17,7 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+.non-clicable{
+  pointer-events: none;
+    cursor: not-allowed;
+}
